@@ -5,7 +5,7 @@ react-custom-scrollbars
 [![npm version](https://img.shields.io/npm/v/replace-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/replace-custom-scrollbars)
 [![npm downloads](https://img.shields.io/npm/dm/replace-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/replace-custom-scrollbars)
 
-This package 
+The package 
 
 https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs
 
@@ -13,10 +13,10 @@ is no longer maintained, therefore I created this cloned version to cover the ne
 
 * frictionless native browser scrolling
 * native scrollbars for mobile devices
-* [fully customizable](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/customization.md)
-* [auto hide](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#auto-hide)
-* [auto height](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#auto-height)
-* [universal](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#universal-rendering) (runs on client & server)
+* [fully customizable](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/customization.md)
+* [auto hide](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/usage.md#auto-hide)
+* [auto height](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/usage.md#auto-height)
+* [universal](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/usage.md#universal-rendering) (runs on client & server)
 * `requestAnimationFrame` for 60fps
 * no extra stylesheets
 * well tested, 100% code coverage
@@ -35,7 +35,7 @@ If you don’t yet use [npm](http://npmjs.com/) or a modern module bundler, and 
 
 ## Usage
 
-This is the minimal configuration. [Check out the Documentation for advanced usage](https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs).
+This is the minimal configuration. [Check out the Documentation for advanced usage](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/docs).
 
 ```javascript
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -84,7 +84,7 @@ class CustomScrollbars extends Component {
 }
 ```
 
-All properties are documented in the [API docs](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/API.md)
+All properties are documented in the [API docs](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/API.md)
 
 ## Examples
 
