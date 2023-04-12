@@ -1,6 +1,6 @@
 {
   "name": "replace-custom-scrollbars",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React scrollbars component, based Malte Wessel/react-custom-scrollbars",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
