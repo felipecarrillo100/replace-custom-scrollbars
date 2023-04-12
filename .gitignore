@@ -6,3 +6,4 @@ lib
 coverage
 examples/simple/static
 .idea/
+*.tgz
