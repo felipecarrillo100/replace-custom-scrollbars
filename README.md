@@ -21,8 +21,7 @@ is no longer maintained, therefore I created this cloned version to cover the ne
 * no extra stylesheets
 * well tested, 100% code coverage
 
-Sample
-https://codesandbox.io/s/replace-custom-scrollbars-l5yuck?file=/src/App.tsx
+Sample: https://codesandbox.io/s/replace-custom-scrollbars-l5yuck?file=/src/App.tsx
 
 [Documentation](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/docs)
 
