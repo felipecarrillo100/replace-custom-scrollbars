@@ -1,4 +1,4 @@
-react-custom-scrollbars
+replace-custom-scrollbars
 =========================
 
 [![npm](https://img.shields.io/badge/npm-replace--custom--scrollbars-brightgreen.svg?style=flat-square)]()
@@ -7,7 +7,7 @@ react-custom-scrollbars
 
 The package 
 
-https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs
+https://github.com/malte-wessel/react-custom-scrollbars
 
 is no longer maintained, therefore I created this cloned version to cover the needs of my ongoing projects. It adds support for React 17 and React 18. It also adds types for TypeScript directly in the package. 
 
@@ -21,6 +21,8 @@ is no longer maintained, therefore I created this cloned version to cover the ne
 * no extra stylesheets
 * well tested, 100% code coverage
 
+Sample
+https://codesandbox.io/s/replace-custom-scrollbars-l5yuck?file=/src/App.tsx
 
 [Documentation](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/docs)
 
@@ -38,7 +40,7 @@ If you don’t yet use [npm](http://npmjs.com/) or a modern module bundler, and 
 This is the minimal configuration. [Check out the Documentation for advanced usage](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/docs).
 
 ```javascript
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from 'replace-custom-scrollbars';
 
 class App extends Component {
   render() {
@@ -54,7 +56,7 @@ class App extends Component {
 The `<Scrollbars>` component is completely customizable. Check out the following code:
 
 ```javascript
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from 'replace-custom-scrollbars';
 
 class CustomScrollbars extends Component {
   render() {
