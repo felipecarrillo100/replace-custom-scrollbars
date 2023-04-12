@@ -1,6 +1,6 @@
 {
   "name": "replace-custom-scrollbars",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "React scrollbars component, based Malte Wessel/react-custom-scrollbars",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -32,7 +32,8 @@
   "bugs": {
     "url": "https://github.com/felipecarrillo100/replace-custom-scrollbars/issues"
   },
-  "homepage": "https://github.com/felipecarrillo100/replace-custom-scrollbars",
+  "homepage": "https://github.com/felipecarrillo100/replace-custom-scrollbars#readme",
+
   "devDependencies": {
     "babel-cli": "^6.2.0",
     "babel-core": "^6.2.1",
