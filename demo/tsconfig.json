@@ -21,10 +21,10 @@
 
     "baseUrl": ".",
     "paths": {
-      "react-custom-scrollbars": ["src/index.ts"],
-      "*": ["src/*"]
+      "react-custom-scrollbars": ["../src/index.ts"],
+      "rebound": ["./rebound.d.ts"]
     }
   },
-  "include": ["src", "demo"],
+  "include": ["."],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,0 +1,647 @@
+// Premium Styling for replace-custom-scrollbars Live Playground
+
+// Core Design Tokens
+$bg-body: #09090b;
+$bg-card: #18181b;
+$bg-card-hover: #27272a;
+$border-color: #27272a;
+$text-primary: #f4f4f5;
+$text-secondary: #a1a1aa;
+$text-muted: #71717a;
+
+$primary: #6366f1;
+$primary-hover: #4f46e5;
+$primary-glow: rgba(99, 102, 241, 0.15);
+
+$success: #10b981;
+$success-glow: rgba(16, 185, 129, 0.15);
+
+$warning: #f59e0b;
+$danger: #ef4444;
+
+$font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+
+// Base Reset
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-sans;
+    background-color: $bg-body;
+    color: $text-primary;
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        color: #818cf8;
+        text-decoration: none;
+    }
+}
+
+// Container Layout
+.app-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// Header Area
+.app-header {
+    margin-bottom: 32px;
+    
+    .header-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+        
+        .meta-tag {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            color: $text-secondary;
+            
+            &.tag-primary {
+                color: $primary;
+                border-color: rgba($primary, 0.2);
+                background: rgba($primary, 0.05);
+            }
+            &.tag-success {
+                color: $success;
+                border-color: rgba($success, 0.2);
+                background: rgba($success, 0.05);
+            }
+            &.tag-warning {
+                color: $warning;
+                border-color: rgba($warning, 0.2);
+                background: rgba($warning, 0.05);
+            }
+            &.tag-danger {
+                color: $danger;
+                border-color: rgba($danger, 0.2);
+                background: rgba($danger, 0.05);
+            }
+        }
+        
+        .meta-separator {
+            color: $text-muted;
+            font-size: 12px;
+        }
+    }
+    
+    .header-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        
+        h1 {
+            font-size: 38px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+        
+        .github-link {
+            font-size: 32px;
+            color: $text-secondary;
+            transition: color 0.2s ease, transform 0.2s ease;
+            
+            &:hover {
+                color: #ffffff;
+                transform: translateY(-2px);
+            }
+        }
+    }
+    
+    .app-subtitle {
+        font-size: 16px;
+        color: $text-secondary;
+        max-width: 800px;
+        margin-bottom: 28px;
+    }
+}
+
+// Tab Buttons Navigation
+.tab-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid $border-color;
+    padding: 6px;
+    border-radius: 12px;
+    
+    .tab-btn {
+        background: transparent;
+        border: none;
+        color: $text-secondary;
+        font-family: $font-sans;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        
+        i {
+            font-size: 13px;
+        }
+        
+        &:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        &.active {
+            color: #ffffff;
+            background: $primary;
+            box-shadow: 0 4px 12px $primary-glow;
+        }
+    }
+}
+
+// Panel Cards
+.panel-card {
+    background-color: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+// Workspace Layout Grid
+.app-workspace {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+    align-items: start;
+    
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// Left Control Panel
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    .panel-title {
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #ffffff;
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 12px;
+        
+        i {
+            color: $primary;
+        }
+    }
+    
+    .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        
+        &.toggle-group {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px dashed $border-color;
+        }
+        
+        .control-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: $text-secondary;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            &.toggle-label {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+                cursor: pointer;
+            }
+            
+            .label-description {
+                font-size: 11px;
+                color: $text-muted;
+                font-weight: 400;
+            }
+            
+            .value-badge {
+                font-family: $font-mono;
+                font-size: 11px;
+                color: $primary;
+                background: rgba($primary, 0.1);
+                padding: 2px 6px;
+                border-radius: 4px;
+            }
+        }
+        
+        // Styled Slider
+        .styled-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: $border-color;
+            outline: none;
+            transition: background 0.15s ease;
+            
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: $primary;
+                cursor: pointer;
+                transition: transform 0.1s ease, background 0.1s ease;
+                
+                &:hover {
+                    transform: scale(1.2);
+                    background: #818cf8;
+                }
+            }
+        }
+        
+        // Color Picker Setup
+        .color-picker-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            .styled-color {
+                -webkit-appearance: none;
+                border: none;
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                cursor: pointer;
+                background: transparent;
+                
+                &::-webkit-color-swatch-wrapper {
+                    padding: 0;
+                }
+                &::-webkit-color-swatch {
+                    border: 1px solid $border-color;
+                    border-radius: 8px;
+                }
+            }
+            
+            .styled-text-input {
+                flex: 1;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid $border-color;
+                border-radius: 8px;
+                padding: 6px 12px;
+                color: #ffffff;
+                font-family: $font-mono;
+                font-size: 13px;
+                
+                &:focus {
+                    outline: none;
+                    border-color: $primary;
+                }
+            }
+        }
+    }
+    
+    // Toggle Switch CSS
+    .toggle-switch {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            
+            &:checked + label {
+                background-color: $primary;
+                
+                &:after {
+                    left: 22px;
+                }
+            }
+        }
+        
+        label {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #27272a;
+            border-radius: 12px;
+            transition: background-color 0.2s ease;
+            
+            &:after {
+                content: "";
+                position: absolute;
+                height: 18px;
+                width: 18px;
+                left: 4px;
+                bottom: 3px;
+                background-color: white;
+                border-radius: 50%;
+                transition: left 0.2s ease;
+            }
+        }
+    }
+    
+    // Actions block for specific scrollbars
+    .panel-actions {
+        border-top: 1px solid $border-color;
+        padding-top: 18px;
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
+        .actions-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, $primary 0%, #4f46e5 100%);
+            border: none;
+            color: #ffffff;
+            font-family: $font-sans;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba($primary, 0.2);
+            
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 14px rgba($primary, 0.3);
+            }
+            
+            &:active {
+                transform: translateY(0);
+            }
+        }
+        
+        .action-help {
+            font-size: 12px;
+            color: $text-muted;
+            line-height: 1.4;
+        }
+    }
+}
+
+// Right Display Panel
+.display-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+// Canvas Card containing the scrollbars
+.canvas-card {
+    padding: 0 !important;
+    overflow: hidden;
+    
+    .canvas-header {
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid $border-color;
+        background: rgba(255, 255, 255, 0.01);
+        gap: 8px;
+        
+        .canvas-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            
+            &.red { background-color: $danger; }
+            &.yellow { background-color: $warning; }
+            &.green { background-color: $success; }
+        }
+        
+        .canvas-title {
+            font-family: $font-mono;
+            font-size: 12px;
+            font-weight: 600;
+            color: $text-secondary;
+            letter-spacing: 0.05em;
+            margin-left: 8px;
+            flex: 1;
+        }
+        
+        .code-toggle {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-family: $font-sans;
+            font-size: 12px;
+            font-weight: 500;
+            color: $text-secondary;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.06);
+            }
+            
+            &.active {
+                color: $primary;
+                border-color: rgba($primary, 0.3);
+                background: rgba($primary, 0.05);
+            }
+        }
+    }
+    
+    .canvas-body {
+        padding: 24px;
+        background-image: 
+            radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0),
+            radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0);
+        background-size: 20px 20px;
+        background-position: 0 0, 10px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .demo-content-inner {
+            padding: 16px 24px;
+            
+            p {
+                margin-bottom: 16px;
+                color: $text-secondary;
+                font-size: 14.5px;
+                line-height: 1.7;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// Code Snippet Card
+.code-card {
+    padding: 0 !important;
+    overflow: hidden;
+    
+    .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 20px;
+        border-bottom: 1px solid $border-color;
+        background: rgba(255, 255, 255, 0.01);
+        
+        .code-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            i {
+                color: $primary;
+            }
+        }
+        
+        .code-language {
+            font-family: $font-mono;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: $text-muted;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    }
+    
+    .code-content {
+        margin: 0;
+        padding: 20px;
+        background-color: #0c0c0e;
+        overflow-x: auto;
+        
+        code {
+            font-family: $font-mono;
+            font-size: 13px;
+            color: #e4e4e7;
+            line-height: 1.5;
+            white-space: pre;
+        }
+    }
+}
+
+// Animation helpers
+.animate-fade-in {
+    animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Footer Area
+.app-footer {
+    border-top: 1px solid $border-color;
+    padding-top: 24px;
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: $text-muted;
+    
+    .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        
+        a {
+            color: $text-secondary;
+            &:hover {
+                color: #ffffff;
+            }
+        }
+        
+        .separator {
+            color: #27272a;
+        }
+        
+        .author-credits {
+            color: $text-muted;
+        }
+    }
+}
+
+// Support class for ColoredScrollbars custom container styling
+.box {
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}

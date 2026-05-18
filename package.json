@@ -1,6 +1,6 @@
 {
   "name": "replace-custom-scrollbars",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React scrollbars component, based Malte Wessel/react-custom-scrollbars",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -18,6 +18,8 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify --clean --external react,react-dom",
+    "demo": "npm --prefix demo run dev",
+    "demo:build": "npm --prefix demo run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src",

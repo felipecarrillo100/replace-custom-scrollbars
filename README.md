@@ -7,6 +7,9 @@ replace-custom-scrollbars
 
 A fully modernized, high-performance, typesafe React custom scrollbars component. Ready for **React 18 & 19** (including Strict Mode, Concurrent Features, and React Compiler support).
 
+👉 **[View the Live Demo & Theme Explorer](https://felipecarrillo100.github.io/replace-custom-scrollbars/)**
+
+
 ### 🚀 Key Improvements & Modernizations
 
 1. **React 18 & 19 Ready**: Built with full concurrency awareness. Functions seamlessly with Strict Mode, standard element cloning, and modern React 19 forwardRef patterns.
@@ -91,15 +94,23 @@ const CustomScrollbars: React.FC = () => {
 
 All properties are documented in the [API docs](https://github.com/felipecarrillo100/replace-custom-scrollbars/blob/master/docs/API.md).
 
-## Examples
+## Examples and Playground
 
-Run the simple example dev server:
+To explore custom styling themes, spring physics, and interactively tune scrollbar parameters:
+
+### Running the Live Playground App
 ```bash
-# Install root package dependencies
-npm install
-# Boot up Vite development environment
-npm run dev
+# Serves the sandbox playground at http://localhost:8000
+npm run demo
 ```
+
+### Compiling the Library
+To compile production bundle assets:
+```bash
+# Rebuilds CJS/ESM outputs and .d.ts files inside /dist
+npm run build
+```
+
 
 ## Tests
 
