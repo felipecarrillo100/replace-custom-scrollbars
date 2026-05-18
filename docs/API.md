@@ -39,6 +39,9 @@
 * `autoHeightMax`: (Number) Set a maximum height for auto-height mode (default: 200)
 * `universal`: (Boolean) Enable universal rendering (default: `false`)
     * [Learn how to use universal rendering](#link)
+* `native`: (Boolean) Enable native styled scrollbars utilizing standard CSS styling rules instead of custom React overlays (default: `false`)
+* `thumbColor`: (String) CSS color representing the native scrollbar slider thumb. (Only applicable when `native` is `true`)
+* `trackColor`: (String) CSS color representing the native scrollbar slider track. (Only applicable when `native` is `true`)
 
 ### Methods
 
@@ -54,4 +57,6 @@
 * `getScrollHeight()`: get scrollHeight value
 * `getClientWidth()`: get view client width
 * `getClientHeight()`: get view client height
+* `getWidth()`: get container client width
+* `getHeight()`: get container client height
 * `getValues()`: get an object with values about the current position.

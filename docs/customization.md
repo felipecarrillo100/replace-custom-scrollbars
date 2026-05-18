@@ -8,35 +8,39 @@ The `<Scrollbars>` component consists of the following elements:
 * `thumbHorizontal` The horizontal thumb
 * `thumbVertical` The vertical thumb
 
-Each element can be **rendered individually** with a function that you pass to the component. Say, you want use your own `className` for each element:
+Each element can be **rendered individually** with a function that you pass to the component. Say you want to use your own `className` for each element:
 
-```javascript
+```tsx
+import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-class CustomScrollbars extends Component {
-  render() {
-    return (
-      <Scrollbars
-        renderTrackHorizontal={props => <div {...props} className="track-horizontal"/>}
-        renderTrackVertical={props => <div {...props} className="track-vertical"/>}
-        renderThumbHorizontal={props => <div {...props} className="thumb-horizontal"/>}
-        renderThumbVertical={props => <div {...props} className="thumb-vertical"/>}
-        renderView={props => <div {...props} className="view"/>}>
-        {this.props.children}
-      </Scrollbars>
-    );
-  }
+interface CustomScrollbarsProps {
+    children: React.ReactNode;
+    style?: React.CSSProperties;
 }
 
-class App extends Component {
-  render() {
+const CustomScrollbars: React.FC<CustomScrollbarsProps> = ({ children, style }) => {
     return (
-      <CustomScrollbars style={{ width: 500, height: 300 }}>
-        <p>Some great content...</p>
-      </CustomScrollbars>
+        <Scrollbars
+            renderTrackHorizontal={props => <div {...props} className="track-horizontal"/>}
+            renderTrackVertical={props => <div {...props} className="track-vertical"/>}
+            renderThumbHorizontal={props => <div {...props} className="thumb-horizontal"/>}
+            renderThumbVertical={props => <div {...props} className="thumb-vertical"/>}
+            renderView={props => <div {...props} className="view"/>}
+            style={style}
+        >
+            {children}
+        </Scrollbars>
     );
-  }
-}
+};
+
+const App: React.FC = () => {
+    return (
+        <CustomScrollbars style={{ width: 500, height: 300 }}>
+            <p>Some great content...</p>
+        </CustomScrollbars>
+    );
+};
 ```
 
 **Important**: **You will always need to pass through the given props** for the respective element like in the example above: `<div {...props} className="track-horizontal"/>`.
@@ -44,64 +48,70 @@ This is because we need to pass some default `styles` down to the element in ord
 
 If you are working with **inline styles**, you could do something like this:
 
-```javascript
+```tsx
+import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-class CustomScrollbars extends Component {
-  render() {
-    return (
-      <Scrollbars
-        renderTrackHorizontal={({ style, ...props }) =>
-            <div {...props} style={{ ...style, backgroundColor: 'blue' }}/>
-        }>
-        {this.props.children}
-      </Scrollbars>
-    );
-  }
+interface CustomScrollbarsProps {
+    children: React.ReactNode;
 }
+
+const CustomScrollbars: React.FC<CustomScrollbarsProps> = ({ children }) => {
+    return (
+        <Scrollbars
+            renderTrackHorizontal={({ style, ...props }) =>
+                <div {...props} style={{ ...style, backgroundColor: 'blue' }}/>
+            }
+        >
+            {children}
+        </Scrollbars>
+    );
+};
 ```
 
 ## Respond to scroll events
 
-If you want to change the appearance in respond to the scrolling position, you could do that like:
+If you want to change the appearance in response to the scrolling position, you can achieve that like this:
 
-```javascript
+```tsx
+import React, { useState, useCallback } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-class CustomScrollbars extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = { top: 0 };
-        this.handleScrollFrame = this.handleScrollFrame.bind(this);
-        this.renderView = this.renderView.bind(this);
-    }
 
-    handleScrollFrame(values) {
+interface CustomScrollbarsProps {
+    children: React.ReactNode;
+    style?: React.CSSProperties;
+}
+
+const CustomScrollbars: React.FC<CustomScrollbarsProps> = ({ children, style }) => {
+    const [top, setTop] = useState(0);
+
+    const handleScrollFrame = useCallback((values: any) => {
         const { top } = values;
-        this.setState({ top });
-    }
+        setTop(top);
+    }, []);
 
-    renderView({ style, ...props }) {
-        const { top } = this.state;
+    const renderView = useCallback(({ style: viewStyle, ...props }: any) => {
         const color = top * 255;
         const customStyle = {
             backgroundColor: `rgb(${color}, ${color}, ${color})`
         };
         return (
-            <div {...props} style={{ ...style, ...customStyle }}/>
+            <div {...props} style={{ ...viewStyle, ...customStyle }}/>
         );
-    }
+    }, [top]);
 
-    render() {
-        return (
-            <Scrollbars
-                renderView={this.renderView}
-                onScrollFrame={this.handleScrollFrame}
-                {...this.props}/>
-        );
-    }
-}
+    return (
+        <Scrollbars
+            renderView={renderView}
+            onScrollFrame={handleScrollFrame}
+            style={style}
+        >
+            {children}
+        </Scrollbars>
+    );
+};
 ```
 
-Check out these examples for some inspiration:
-* [ColoredScrollbars](https://github.com/malte-wessel/react-custom-scrollbars/tree/master/examples/simple/components/ColoredScrollbars)
-* [ShadowScrollbars](https://github.com/malte-wessel/react-custom-scrollbars/tree/master/examples/simple/components/ShadowScrollbars)
+Check out these examples in the repository for some inspiration:
+* [ColoredScrollbars](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/examples/simple/components/ColoredScrollbars)
+* [ShadowScrollbars](https://github.com/felipecarrillo100/replace-custom-scrollbars/tree/master/examples/simple/components/ShadowScrollbars)
