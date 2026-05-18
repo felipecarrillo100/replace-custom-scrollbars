@@ -7,3 +7,5 @@ coverage
 examples/simple/static
 .idea/
 *.tgz
+.tsup
+
