@@ -612,6 +612,8 @@ export const Scrollbars = forwardRef<ScrollbarsRef, ScrollbarProps>((propsInput,
         } : {
             marginRight: scrollbarWidth ? -scrollbarWidth : 0,
             marginBottom: scrollbarWidth ? -scrollbarWidth : 0,
+            paddingRight: scrollbarWidth ? scrollbarWidth : 0,
+            paddingBottom: scrollbarWidth ? scrollbarWidth : 0,
             scrollbarWidth: 'none' as const,
             msOverflowStyle: 'none' as const,
         }),
