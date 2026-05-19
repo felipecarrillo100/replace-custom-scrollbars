@@ -8,7 +8,7 @@ type TabId = 'default' | 'colored' | 'spring' | 'shadow' | 'native';
 
 export default function App() {
     const [activeTab, setActiveTab] = useState<TabId>('default');
-    
+
     // Playground configurations
     const [containerHeight, setContainerHeight] = useState<number>(300);
     const [autoHide, setAutoHide] = useState<boolean>(false);
@@ -18,10 +18,10 @@ export default function App() {
     const [nativeMode, setNativeMode] = useState<boolean>(false);
     const [thumbColor, setThumbColor] = useState<string>('#6366f1');
     const [trackColor, setTrackColor] = useState<string>('#1e1b4b');
-    
+
     // Code snippet visibility
     const [showCode, setShowCode] = useState<boolean>(true);
-    
+
     // Refs for action buttons
     const springScrollbarsRef = useRef<SpringScrollbars>(null);
 
@@ -36,7 +36,7 @@ export default function App() {
     // Helper to generate dynamic props code
     const getDynamicPropsString = () => {
         let propsList = [];
-        
+
         if (activeTab === 'native') {
             propsList.push('native={true}');
             propsList.push(`thumbColor="${thumbColor}"`);
@@ -51,7 +51,7 @@ export default function App() {
                 propsList.push(`thumbMinSize={${thumbMinSize}}`);
             }
         }
-        
+
         propsList.push(`style={{ height: ${containerHeight} }}`);
         return propsList.join('\n    ');
     };
@@ -93,7 +93,7 @@ export default function App() {
 
     const renderScrollbarDemo = () => {
         const commonStyle = { height: containerHeight, width: '100%' };
-        
+
         switch (activeTab) {
             case 'default':
                 return (
@@ -175,7 +175,7 @@ export default function App() {
             {/* Header section */}
             <header className="app-header">
                 <div className="header-meta">
-                    <span className="meta-tag tag-primary">v2.0.0</span>
+                    <span className="meta-tag tag-primary">v2.0.3</span>
                     <span className="meta-separator">•</span>
                     <span className="meta-tag tag-success">React 18 & 19 Ready</span>
                     <span className="meta-separator">•</span>
@@ -183,45 +183,45 @@ export default function App() {
                     <span className="meta-separator">•</span>
                     <span className="meta-tag tag-danger">Infinite Zoom Protection</span>
                 </div>
-                
+
                 <div className="header-title-container">
                     <h1>replace-custom-scrollbars</h1>
                     <a href="https://github.com/felipecarrillo100/replace-custom-scrollbars" target="_blank" rel="noopener noreferrer" className="github-link" title="View on GitHub">
                         <i className="fa-brands fa-github"></i>
                     </a>
                 </div>
-                
+
                 <p className="app-subtitle">
                     A fully modernized, high-performance, typesafe React custom scrollbars component. Ready for Concurrent Mode and designed as a clean, backward-compatible drop-in replacement.
                 </p>
 
                 {/* Tab Navigation */}
                 <div className="tab-navigation">
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'default' ? 'active' : ''}`}
                         onClick={() => setActiveTab('default')}
                     >
                         <i className="fa-solid fa-scroll"></i> Default Style
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'colored' ? 'active' : ''}`}
                         onClick={() => setActiveTab('colored')}
                     >
                         <i className="fa-solid fa-palette"></i> Custom style
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'spring' ? 'active' : ''}`}
                         onClick={() => setActiveTab('spring')}
                     >
                         <i className="fa-solid fa-bounce"></i> Spring scroll
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'shadow' ? 'active' : ''}`}
                         onClick={() => setActiveTab('shadow')}
                     >
                         <i className="fa-solid fa-circle-nodes"></i> Shadow scrollbars
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'native' ? 'active' : ''}`}
                         onClick={() => setActiveTab('native')}
                     >
@@ -232,13 +232,13 @@ export default function App() {
 
             {/* Main Console Grid */}
             <main className="app-workspace">
-                
+
                 {/* Left Panel: Settings / Controls */}
                 <section className="control-panel panel-card">
                     <h3 className="panel-title">
                         <i className="fa-solid fa-sliders"></i> Scrollbar Parameters
                     </h3>
-                    
+
                     {activeTab !== 'native' ? (
                         <>
                             {/* Height slider */}
@@ -247,11 +247,11 @@ export default function App() {
                                     <span>Viewport Height</span>
                                     <span className="value-badge">{containerHeight}px</span>
                                 </label>
-                                <input 
-                                    type="range" 
-                                    min="150" 
-                                    max="500" 
-                                    step="10" 
+                                <input
+                                    type="range"
+                                    min="150"
+                                    max="500"
+                                    step="10"
                                     value={containerHeight}
                                     onChange={(e) => setContainerHeight(Number(e.target.value))}
                                     className="styled-slider"
@@ -265,8 +265,8 @@ export default function App() {
                                     <span className="label-description">Fade scrollbars out when mouse is inactive</span>
                                 </label>
                                 <div className="toggle-switch">
-                                    <input 
-                                        type="checkbox" 
+                                    <input
+                                        type="checkbox"
                                         id="autohide-toggle"
                                         checked={autoHide}
                                         onChange={(e) => setAutoHide(e.target.checked)}
@@ -283,11 +283,11 @@ export default function App() {
                                             <span>Hide Delay</span>
                                             <span className="value-badge">{autoHideTimeout}ms</span>
                                         </label>
-                                        <input 
-                                            type="range" 
-                                            min="200" 
-                                            max="3000" 
-                                            step="100" 
+                                        <input
+                                            type="range"
+                                            min="200"
+                                            max="3000"
+                                            step="100"
                                             value={autoHideTimeout}
                                             onChange={(e) => setAutoHideTimeout(Number(e.target.value))}
                                             className="styled-slider"
@@ -300,11 +300,11 @@ export default function App() {
                                             <span>Fade Duration</span>
                                             <span className="value-badge">{autoHideDuration}ms</span>
                                         </label>
-                                        <input 
-                                            type="range" 
-                                            min="50" 
-                                            max="1000" 
-                                            step="50" 
+                                        <input
+                                            type="range"
+                                            min="50"
+                                            max="1000"
+                                            step="50"
                                             value={autoHideDuration}
                                             onChange={(e) => setAutoHideDuration(Number(e.target.value))}
                                             className="styled-slider"
@@ -319,11 +319,11 @@ export default function App() {
                                     <span>Min Thumb Size</span>
                                     <span className="value-badge">{thumbMinSize}px</span>
                                 </label>
-                                <input 
-                                    type="range" 
-                                    min="10" 
-                                    max="150" 
-                                    step="5" 
+                                <input
+                                    type="range"
+                                    min="10"
+                                    max="150"
+                                    step="5"
                                     value={thumbMinSize}
                                     onChange={(e) => setThumbMinSize(Number(e.target.value))}
                                     className="styled-slider"
@@ -338,11 +338,11 @@ export default function App() {
                                     <span>Viewport Height</span>
                                     <span className="value-badge">{containerHeight}px</span>
                                 </label>
-                                <input 
-                                    type="range" 
-                                    min="150" 
-                                    max="500" 
-                                    step="10" 
+                                <input
+                                    type="range"
+                                    min="150"
+                                    max="500"
+                                    step="10"
                                     value={containerHeight}
                                     onChange={(e) => setContainerHeight(Number(e.target.value))}
                                     className="styled-slider"
@@ -352,16 +352,16 @@ export default function App() {
                             <div className="control-group">
                                 <label className="control-label">Thumb Color</label>
                                 <div className="color-picker-wrapper">
-                                    <input 
-                                        type="color" 
-                                        value={thumbColor} 
-                                        onChange={(e) => setThumbColor(e.target.value)} 
+                                    <input
+                                        type="color"
+                                        value={thumbColor}
+                                        onChange={(e) => setThumbColor(e.target.value)}
                                         className="styled-color"
                                     />
-                                    <input 
-                                        type="text" 
-                                        value={thumbColor} 
-                                        onChange={(e) => setThumbColor(e.target.value)} 
+                                    <input
+                                        type="text"
+                                        value={thumbColor}
+                                        onChange={(e) => setThumbColor(e.target.value)}
                                         className="styled-text-input"
                                     />
                                 </div>
@@ -370,16 +370,16 @@ export default function App() {
                             <div className="control-group">
                                 <label className="control-label">Track Color</label>
                                 <div className="color-picker-wrapper">
-                                    <input 
-                                        type="color" 
-                                        value={trackColor} 
-                                        onChange={(e) => setTrackColor(e.target.value)} 
+                                    <input
+                                        type="color"
+                                        value={trackColor}
+                                        onChange={(e) => setTrackColor(e.target.value)}
                                         className="styled-color"
                                     />
-                                    <input 
-                                        type="text" 
-                                        value={trackColor} 
-                                        onChange={(e) => setTrackColor(e.target.value)} 
+                                    <input
+                                        type="text"
+                                        value={trackColor}
+                                        onChange={(e) => setTrackColor(e.target.value)}
                                         className="styled-text-input"
                                     />
                                 </div>
@@ -400,10 +400,10 @@ export default function App() {
                         </div>
                     )}
                 </section>
-                
+
                 {/* Right Panel: Interactive Canvas & Dynamic Code */}
                 <section className="display-panel">
-                    
+
                     {/* Live Render Canvas */}
                     <div className="canvas-card panel-card">
                         <div className="canvas-header">
@@ -413,14 +413,14 @@ export default function App() {
                             <span className="canvas-title">
                                 {activeTab.toUpperCase()} SCROLLBAR CONTAINER
                             </span>
-                            <button 
+                            <button
                                 className={`code-toggle ${showCode ? 'active' : ''}`}
                                 onClick={() => setShowCode(!showCode)}
                             >
                                 <i className="fa-solid fa-code"></i> {showCode ? 'Hide Code' : 'Show Code'}
                             </button>
                         </div>
-                        
+
                         <div className="canvas-body">
                             {renderScrollbarDemo()}
                         </div>
