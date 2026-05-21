@@ -15,9 +15,10 @@ A fully modernized, high-performance, typesafe React custom scrollbars component
 1. **React 18 & 19 Ready**: Built with full concurrency awareness. Functions seamlessly with Strict Mode, standard element cloning, and modern React 19 forwardRef patterns.
 2. **Infinite Zoom Protection (New)**: Completely resolves layout gaps under browser zoom levels of 75% or lower. Combines precise negative margin offset calculations with standard, robust CSS hiding elements (`scrollbar-width: none` and Webkit pseudo-element selectors) to ensure native scrollbars are 100% transparent and hidden under any browser scaling factor.
 3. **Opt-in Native Styling Mode (New)**: Render lightweight, GPU-accelerated standard native browser scrollbars using the `native={true}` option. Style standard scrollbars easily with `thumbColor` and `trackColor` properties.
-4. **Vite 8 & tsup Build Engine**: Bundled utilizing modern, fast tsup compilers producing optimized dual ESM and CJS formats alongside typesafe declaration maps (`.d.ts` and `.d.mts`).
-5. **Modernized Test Suite**: Replaced legacy Karma/Webpack tests with a fast, reliable test suite powered by **Vitest** and **React Testing Library**.
-6. **Zero Legacy Bloat**: Cleaned up all obsolete configuration files (such as `karma.conf.js`, `prepublish.js`, `tests.js`, `.nvmrc`, `.travis.yml`, and unused Bootstrap classes) for a lightweight, modern codebase.
+4. **Automatic RTL Support**: Native detection and graceful handling of RTL (Right-to-Left) text directions out of the box.
+5. **Vite 8 & tsup Build Engine**: Bundled utilizing modern, fast tsup compilers producing optimized dual ESM and CJS formats alongside typesafe declaration maps (`.d.ts` and `.d.mts`).
+6. **Modernized Test Suite**: Replaced legacy Karma/Webpack tests with a fast, reliable test suite powered by **Vitest** and **React Testing Library**.
+7. **Zero Legacy Bloat**: Cleaned up all obsolete configuration files (such as `karma.conf.js`, `prepublish.js`, `tests.js`, `.nvmrc`, `.travis.yml`, and unused Bootstrap classes) for a lightweight, modern codebase.
 
 * frictionless native browser scrolling
 * native scrollbars for mobile devices
@@ -34,7 +35,7 @@ A fully modernized, high-performance, typesafe React custom scrollbars component
 
 ## Installation
 ```bash
-npm install replace-custom-scrollbars --save
+npm install replace-custom-scrollbars
 ```
 
 ## Usage

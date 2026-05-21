@@ -1,7 +1,7 @@
 {
   "name": "replace-custom-scrollbars-demo",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive Playground for replace-custom-scrollbars",
   "type": "module",
   "scripts": {

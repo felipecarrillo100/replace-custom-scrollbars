@@ -18,7 +18,7 @@ export function renderTrackHorizontalDefault({ style, ...props }: React.HTMLAttr
 export function renderTrackVerticalDefault({ style, ...props }: React.HTMLAttributes<HTMLDivElement>) {
     const finalStyle: React.CSSProperties = {
         ...style,
-        right: 2,
+        insetInlineEnd: 2,
         bottom: 2,
         top: 2,
         borderRadius: 3

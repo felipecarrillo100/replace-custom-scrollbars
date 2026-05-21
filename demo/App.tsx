@@ -6,11 +6,21 @@ import ShadowScrollbars from './components/ShadowScrollbars/ShadowScrollbars';
 
 type TabId = 'default' | 'colored' | 'spring' | 'shadow' | 'native';
 
+class ErrorBoundary extends React.Component<any, { error: any }> {
+    state = { error: null };
+    static getDerivedStateFromError(error: any) { return { error }; }
+    render() {
+        if (this.state.error) return <div style={{color: 'red', padding: 20}}>{this.state.error.message}</div>;
+        return this.props.children;
+    }
+}
+
 export default function App() {
     const [activeTab, setActiveTab] = useState<TabId>('default');
 
     // Playground configurations
     const [containerHeight, setContainerHeight] = useState<number>(300);
+    const [contentWidth, setContentWidth] = useState<number>(100);
     const [autoHide, setAutoHide] = useState<boolean>(false);
     const [autoHideTimeout, setAutoHideTimeout] = useState<number>(1000);
     const [autoHideDuration, setAutoHideDuration] = useState<number>(200);
@@ -18,6 +28,9 @@ export default function App() {
     const [nativeMode, setNativeMode] = useState<boolean>(false);
     const [thumbColor, setThumbColor] = useState<string>('#6366f1');
     const [trackColor, setTrackColor] = useState<string>('#1e1b4b');
+
+    // RTL mode
+    const [rtlMode, setRtlMode] = useState<boolean>(false);
 
     // Code snippet visibility
     const [showCode, setShowCode] = useState<boolean>(true);
@@ -92,7 +105,8 @@ export default function App() {
     ];
 
     const renderScrollbarDemo = () => {
-        const commonStyle = { height: containerHeight, width: '100%' };
+        const commonStyle = { height: containerHeight };
+        const contentStyle = { width: `${contentWidth}%` };
 
         switch (activeTab) {
             case 'default':
@@ -103,8 +117,10 @@ export default function App() {
                         autoHideTimeout={autoHideTimeout}
                         autoHideDuration={autoHideDuration}
                         thumbMinSize={thumbMinSize}
+                        renderThumbHorizontal={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
+                        renderThumbVertical={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
                     >
-                        <div className="demo-content-inner">
+                        <div className="demo-content-inner" style={contentStyle}>
                             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                         </div>
                     </Scrollbars>
@@ -118,7 +134,7 @@ export default function App() {
                         autoHideDuration={autoHideDuration}
                         thumbMinSize={thumbMinSize}
                     >
-                        <div className="demo-content-inner">
+                        <div className="demo-content-inner" style={contentStyle}>
                             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                         </div>
                     </ColoredScrollbars>
@@ -132,8 +148,10 @@ export default function App() {
                         autoHideTimeout={autoHideTimeout}
                         autoHideDuration={autoHideDuration}
                         thumbMinSize={thumbMinSize}
+                        renderThumbHorizontal={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
+                        renderThumbVertical={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
                     >
-                        <div className="demo-content-inner">
+                        <div className="demo-content-inner" style={contentStyle}>
                             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                         </div>
                     </SpringScrollbars>
@@ -146,8 +164,10 @@ export default function App() {
                         autoHideTimeout={autoHideTimeout}
                         autoHideDuration={autoHideDuration}
                         thumbMinSize={thumbMinSize}
+                        renderThumbHorizontal={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
+                        renderThumbVertical={props => <div {...props} style={{ ...props.style, backgroundColor: thumbColor }} />}
                     >
-                        <div className="demo-content-inner">
+                        <div className="demo-content-inner" style={contentStyle}>
                             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                         </div>
                     </ShadowScrollbars>
@@ -160,7 +180,7 @@ export default function App() {
                         thumbColor={thumbColor}
                         trackColor={trackColor}
                     >
-                        <div className="demo-content-inner">
+                        <div className="demo-content-inner" style={contentStyle}>
                             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                         </div>
                     </Scrollbars>
@@ -227,6 +247,7 @@ export default function App() {
                     >
                         <i className="fa-solid fa-window-maximize"></i> Native style
                     </button>
+
                 </div>
             </header>
 
@@ -239,24 +260,61 @@ export default function App() {
                         <i className="fa-solid fa-sliders"></i> Scrollbar Parameters
                     </h3>
 
-                    {activeTab !== 'native' ? (
-                        <>
-                            {/* Height slider */}
-                            <div className="control-group">
-                                <label className="control-label">
-                                    <span>Viewport Height</span>
-                                    <span className="value-badge">{containerHeight}px</span>
-                                </label>
+                    <div className="control-group">
+                        <label className="control-label">
+                            <span>Viewport Height</span>
+                            <span className="value-badge">{containerHeight}px</span>
+                        </label>
+                        <input
+                            type="range"
+                            min="150"
+                            max="500"
+                            step="10"
+                            value={containerHeight}
+                            onChange={(e) => setContainerHeight(Number(e.target.value))}
+                            className="styled-slider"
+                        />
+                    </div>
+
+                    {/* Content Width slider */}
+                    <div className="control-group">
+                        <label className="control-label">
+                            <span>Content Width</span>
+                            <span className="value-badge">{contentWidth}%</span>
+                        </label>
+                        <input
+                            type="range"
+                            min="100"
+                            max="300"
+                            step="10"
+                            value={contentWidth}
+                            onChange={(e) => setContentWidth(Number(e.target.value))}
+                            className="styled-slider"
+                        />
+                    </div>
+
+                    {activeTab !== 'colored' && (
+                        <div className="control-group">
+                            <label className="control-label">Thumb Color</label>
+                            <div className="color-picker-wrapper">
                                 <input
-                                    type="range"
-                                    min="150"
-                                    max="500"
-                                    step="10"
-                                    value={containerHeight}
-                                    onChange={(e) => setContainerHeight(Number(e.target.value))}
-                                    className="styled-slider"
+                                    type="color"
+                                    value={thumbColor}
+                                    onChange={(e) => setThumbColor(e.target.value)}
+                                    className="styled-color"
+                                />
+                                <input
+                                    type="text"
+                                    value={thumbColor}
+                                    onChange={(e) => setThumbColor(e.target.value)}
+                                    className="styled-text-input"
                                 />
                             </div>
+                        </div>
+                    )}
+
+                    {activeTab !== 'native' ? (
+                        <>
 
                             {/* AutoHide Toggle */}
                             <div className="control-group toggle-group">
@@ -334,40 +392,6 @@ export default function App() {
                         <>
                             {/* Native configurations */}
                             <div className="control-group">
-                                <label className="control-label">
-                                    <span>Viewport Height</span>
-                                    <span className="value-badge">{containerHeight}px</span>
-                                </label>
-                                <input
-                                    type="range"
-                                    min="150"
-                                    max="500"
-                                    step="10"
-                                    value={containerHeight}
-                                    onChange={(e) => setContainerHeight(Number(e.target.value))}
-                                    className="styled-slider"
-                                />
-                            </div>
-
-                            <div className="control-group">
-                                <label className="control-label">Thumb Color</label>
-                                <div className="color-picker-wrapper">
-                                    <input
-                                        type="color"
-                                        value={thumbColor}
-                                        onChange={(e) => setThumbColor(e.target.value)}
-                                        className="styled-color"
-                                    />
-                                    <input
-                                        type="text"
-                                        value={thumbColor}
-                                        onChange={(e) => setThumbColor(e.target.value)}
-                                        className="styled-text-input"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="control-group">
                                 <label className="control-label">Track Color</label>
                                 <div className="color-picker-wrapper">
                                     <input
@@ -386,6 +410,23 @@ export default function App() {
                             </div>
                         </>
                     )}
+
+                    {/* RTL Toggle */}
+                    <div className="control-group toggle-group">
+                        <label className="control-label toggle-label" htmlFor="rtl-toggle">
+                            <span>RTL Mode</span>
+                            <span className="label-description">Scrollbar should move to the left</span>
+                        </label>
+                        <div className="toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="rtl-toggle"
+                                checked={rtlMode}
+                                onChange={(e) => setRtlMode(e.target.checked)}
+                            />
+                            <label htmlFor="rtl-toggle"></label>
+                        </div>
+                    </div>
 
                     {/* Example Actions Context */}
                     {activeTab === 'spring' && (
@@ -421,8 +462,10 @@ export default function App() {
                             </button>
                         </div>
 
-                        <div className="canvas-body">
-                            {renderScrollbarDemo()}
+                        <div className="canvas-body" dir={rtlMode ? 'rtl' : undefined}>
+                            <ErrorBoundary>
+                                {renderScrollbarDemo()}
+                            </ErrorBoundary>
                         </div>
                     </div>
 

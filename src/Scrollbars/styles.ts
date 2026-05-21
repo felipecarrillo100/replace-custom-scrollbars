@@ -33,7 +33,7 @@ export const viewStyleAutoHeight: React.CSSProperties = {
 
 export const viewStyleUniversalInitial: React.CSSProperties = {
     overflow: 'hidden',
-    marginRight: 0,
+    marginInlineEnd: 0,
     marginBottom: 0,
 };
 

@@ -484,6 +484,11 @@ export const Scrollbars = forwardRef<ScrollbarsRef, ScrollbarProps>((propsInput,
         update();
     }, [update]);
 
+    // Equivalent to componentDidUpdate: recalculate thumb sizes if children/layout changed
+    useEffect(() => {
+        update();
+    });
+
     useEffect(() => {
         if (universal) {
             setDidMountUniversal(true);
@@ -605,14 +610,15 @@ export const Scrollbars = forwardRef<ScrollbarsRef, ScrollbarProps>((propsInput,
         ...(native ? {
             marginRight: 0,
             marginBottom: 0,
+            overflow: 'auto' as const,
             scrollbarWidth: 'thin' as const,
             ...(thumbColor && trackColor && {
                 scrollbarColor: `${thumbColor} ${trackColor}`
             })
         } : {
-            marginRight: scrollbarWidth ? -scrollbarWidth : 0,
+            marginInlineEnd: scrollbarWidth ? -scrollbarWidth : 0,
             marginBottom: scrollbarWidth ? -scrollbarWidth : 0,
-            paddingRight: scrollbarWidth ? scrollbarWidth : 0,
+            paddingInlineEnd: scrollbarWidth ? scrollbarWidth : 0,
             paddingBottom: scrollbarWidth ? scrollbarWidth : 0,
             scrollbarWidth: 'none' as const,
             msOverflowStyle: 'none' as const,

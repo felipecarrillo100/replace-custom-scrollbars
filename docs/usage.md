@@ -117,6 +117,25 @@ const App: React.FC = () => {
 };
 ```
 
+## Automatic RTL Support
+
+The `<Scrollbars>` component automatically detects the text direction (RTL or LTR) by inspecting the computed styles. In an RTL environment (e.g. `dir="rtl"`), the vertical scrollbar is automatically positioned to the left side of the container without requiring any manual configuration.
+
+```tsx
+import React from 'react';
+import { Scrollbars } from 'replace-custom-scrollbars';
+
+const App: React.FC = () => {
+    return (
+        <div dir="rtl">
+            <Scrollbars style={{ width: 500, height: 300 }}>
+                <p>محتوى رائع...</p>
+            </Scrollbars>
+        </div>
+    );
+};
+```
+
 ## Universal rendering
 
 If your app runs on both client and server, activate the `universal` mode. This will ensure that the initial markup on client and server are the same:

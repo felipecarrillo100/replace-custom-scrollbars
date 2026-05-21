@@ -42,6 +42,7 @@ class ShadowScrollbars extends Component<any, ShadowScrollbarsState> {
         const { style, ...props } = this.props;
         const containerStyle: React.CSSProperties = {
             ...style,
+            width: '100%',
             position: 'relative'
         };
         const shadowTopStyle: React.CSSProperties = {
@@ -49,29 +50,27 @@ class ShadowScrollbars extends Component<any, ShadowScrollbarsState> {
             top: 0,
             left: 0,
             right: 0,
-            height: 10,
-            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%)'
+            height: 20,
+            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%)',
+            pointerEvents: 'none'
         };
         const shadowBottomStyle: React.CSSProperties = {
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            height: 10,
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%)'
+            height: 20,
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%)',
+            pointerEvents: 'none'
         };
         return (
             <div style={containerStyle}>
+                <div ref={this.shadowTopRef} style={shadowTopStyle}/>
+                <div ref={this.shadowBottomRef} style={shadowBottomStyle}/>
                 <Scrollbars
                     ref={this.scrollbarsRef}
                     onUpdate={this.handleUpdate}
                     {...props}/>
-                <div
-                    ref={this.shadowTopRef}
-                    style={shadowTopStyle}/>
-                <div
-                    ref={this.shadowBottomRef}
-                    style={shadowBottomStyle}/>
             </div>
         );
     }
